@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E297524227EC68A000DEA3E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524127EC68A000DEA3E1 /* AppDelegate.swift */; };
+		E297524427EC68A000DEA3E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524327EC68A000DEA3E1 /* SceneDelegate.swift */; };
+		E297524627EC68A000DEA3E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524527EC68A000DEA3E1 /* ViewController.swift */; };
+		E297524927EC68A000DEA3E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E297524727EC68A000DEA3E1 /* Main.storyboard */; };
+		E297524B27EC68A100DEA3E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E297524A27EC68A100DEA3E1 /* Assets.xcassets */; };
+		E297524E27EC68A100DEA3E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E297524C27EC68A100DEA3E1 /* LaunchScreen.storyboard */; };
+		E297525A27EC68C700DEA3E1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E297525627EC68C700DEA3E1 /* Shaders.metal */; };
+		E297525B27EC68C700DEA3E1 /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297525727EC68C700DEA3E1 /* Brush.swift */; };
+		E297525C27EC68C700DEA3E1 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297525827EC68C700DEA3E1 /* Renderer.swift */; };
+		E297525D27EC68C700DEA3E1 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297525927EC68C700DEA3E1 /* Line.swift */; };
+		E297526327EC68DF00DEA3E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297525E27EC68DF00DEA3E1 /* Utils.swift */; };
+		E297526427EC68DF00DEA3E1 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297525F27EC68DF00DEA3E1 /* BezierGenerator.swift */; };
+		E297526527EC68DF00DEA3E1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526027EC68DF00DEA3E1 /* MainViewController.swift */; };
+		E297526627EC68DF00DEA3E1 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526127EC68DF00DEA3E1 /* MetalView.swift */; };
+		E297526727EC68DF00DEA3E1 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526227EC68DF00DEA3E1 /* Math.swift */; };
+		E297526927EC68F000DEA3E1 /* ViewController(Deprecated).swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526827EC68F000DEA3E1 /* ViewController(Deprecated).swift */; };
+		E297526B27EC691400DEA3E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526A27EC691400DEA3E1 /* Canvas.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E297523E27EC68A000DEA3E1 /* MetalDrawingLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalDrawingLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E297524127EC68A000DEA3E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E297524327EC68A000DEA3E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E297524527EC68A000DEA3E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E297524827EC68A000DEA3E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E297524A27EC68A100DEA3E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E297524D27EC68A100DEA3E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E297524F27EC68A100DEA3E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E297525627EC68C700DEA3E1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		E297525727EC68C700DEA3E1 /* Brush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brush.swift; sourceTree = "<group>"; };
+		E297525827EC68C700DEA3E1 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		E297525927EC68C700DEA3E1 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		E297525E27EC68DF00DEA3E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E297525F27EC68DF00DEA3E1 /* BezierGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierGenerator.swift; sourceTree = "<group>"; };
+		E297526027EC68DF00DEA3E1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E297526127EC68DF00DEA3E1 /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		E297526227EC68DF00DEA3E1 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		E297526827EC68F000DEA3E1 /* ViewController(Deprecated).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController(Deprecated).swift"; sourceTree = "<group>"; };
+		E297526A27EC691400DEA3E1 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E297523B27EC68A000DEA3E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E297523527EC68A000DEA3E1 = {
+			isa = PBXGroup;
+			children = (
+				E297524027EC68A000DEA3E1 /* MetalDrawingLibrary */,
+				E297523F27EC68A000DEA3E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E297523F27EC68A000DEA3E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E297523E27EC68A000DEA3E1 /* MetalDrawingLibrary.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E297524027EC68A000DEA3E1 /* MetalDrawingLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				E297526827EC68F000DEA3E1 /* ViewController(Deprecated).swift */,
+				E297525527EC68B600DEA3E1 /* DrawingClasses */,
+				E297524127EC68A000DEA3E1 /* AppDelegate.swift */,
+				E297524327EC68A000DEA3E1 /* SceneDelegate.swift */,
+				E297524527EC68A000DEA3E1 /* ViewController.swift */,
+				E297524727EC68A000DEA3E1 /* Main.storyboard */,
+				E297524A27EC68A100DEA3E1 /* Assets.xcassets */,
+				E297524C27EC68A100DEA3E1 /* LaunchScreen.storyboard */,
+				E297524F27EC68A100DEA3E1 /* Info.plist */,
+			);
+			path = MetalDrawingLibrary;
+			sourceTree = "<group>";
+		};
+		E297525527EC68B600DEA3E1 /* DrawingClasses */ = {
+			isa = PBXGroup;
+			children = (
+				E297526A27EC691400DEA3E1 /* Canvas.swift */,
+				E297525F27EC68DF00DEA3E1 /* BezierGenerator.swift */,
+				E297526027EC68DF00DEA3E1 /* MainViewController.swift */,
+				E297526227EC68DF00DEA3E1 /* Math.swift */,
+				E297526127EC68DF00DEA3E1 /* MetalView.swift */,
+				E297525E27EC68DF00DEA3E1 /* Utils.swift */,
+				E297525727EC68C700DEA3E1 /* Brush.swift */,
+				E297525927EC68C700DEA3E1 /* Line.swift */,
+				E297525827EC68C700DEA3E1 /* Renderer.swift */,
+				E297525627EC68C700DEA3E1 /* Shaders.metal */,
+			);
+			path = DrawingClasses;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E297523D27EC68A000DEA3E1 /* MetalDrawingLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E297525227EC68A100DEA3E1 /* Build configuration list for PBXNativeTarget "MetalDrawingLibrary" */;
+			buildPhases = (
+				E297523A27EC68A000DEA3E1 /* Sources */,
+				E297523B27EC68A000DEA3E1 /* Frameworks */,
+				E297523C27EC68A000DEA3E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetalDrawingLibrary;
+			productName = MetalDrawingLibrary;
+			productReference = E297523E27EC68A000DEA3E1 /* MetalDrawingLibrary.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E297523627EC68A000DEA3E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					E297523D27EC68A000DEA3E1 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+				};
+			};
+			buildConfigurationList = E297523927EC68A000DEA3E1 /* Build configuration list for PBXProject "MetalDrawingLibrary" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E297523527EC68A000DEA3E1;
+			productRefGroup = E297523F27EC68A000DEA3E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E297523D27EC68A000DEA3E1 /* MetalDrawingLibrary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E297523C27EC68A000DEA3E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E297524E27EC68A100DEA3E1 /* LaunchScreen.storyboard in Resources */,
+				E297524B27EC68A100DEA3E1 /* Assets.xcassets in Resources */,
+				E297524927EC68A000DEA3E1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E297523A27EC68A000DEA3E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E297525A27EC68C700DEA3E1 /* Shaders.metal in Sources */,
+				E297526427EC68DF00DEA3E1 /* BezierGenerator.swift in Sources */,
+				E297526927EC68F000DEA3E1 /* ViewController(Deprecated).swift in Sources */,
+				E297524627EC68A000DEA3E1 /* ViewController.swift in Sources */,
+				E297525B27EC68C700DEA3E1 /* Brush.swift in Sources */,
+				E297524227EC68A000DEA3E1 /* AppDelegate.swift in Sources */,
+				E297525C27EC68C700DEA3E1 /* Renderer.swift in Sources */,
+				E297526B27EC691400DEA3E1 /* Canvas.swift in Sources */,
+				E297526627EC68DF00DEA3E1 /* MetalView.swift in Sources */,
+				E297525D27EC68C700DEA3E1 /* Line.swift in Sources */,
+				E297524427EC68A000DEA3E1 /* SceneDelegate.swift in Sources */,
+				E297526327EC68DF00DEA3E1 /* Utils.swift in Sources */,
+				E297526527EC68DF00DEA3E1 /* MainViewController.swift in Sources */,
+				E297526727EC68DF00DEA3E1 /* Math.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E297524727EC68A000DEA3E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E297524827EC68A000DEA3E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E297524C27EC68A100DEA3E1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E297524D27EC68A100DEA3E1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E297525027EC68A100DEA3E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E297525127EC68A100DEA3E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E297525327EC68A100DEA3E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6U2TY3RPNB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MetalDrawingLibrary/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Rudnick.MetalDrawingLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E297525427EC68A100DEA3E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6U2TY3RPNB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MetalDrawingLibrary/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Rudnick.MetalDrawingLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E297523927EC68A000DEA3E1 /* Build configuration list for PBXProject "MetalDrawingLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E297525027EC68A100DEA3E1 /* Debug */,
+				E297525127EC68A100DEA3E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E297525227EC68A100DEA3E1 /* Build configuration list for PBXNativeTarget "MetalDrawingLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E297525327EC68A100DEA3E1 /* Debug */,
+				E297525427EC68A100DEA3E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E297523627EC68A000DEA3E1 /* Project object */;
+}
