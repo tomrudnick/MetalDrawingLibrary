@@ -12,6 +12,7 @@ import simd
 struct Vertex {
     var position: SIMD3<Float>
     var force: Float
+    var color: SIMD4<Float>
 }
 
 class Brush {
@@ -19,8 +20,10 @@ class Brush {
     var texture: MTLTexture?
     var vertexProgram: MTLFunction?
     var fragmentProgram: MTLFunction?
+    var color: SIMD4<Float>
     
-    init() {
+    init(color: SIMD4<Float>) {
+        self.color = color
         let vertexProgram = createVertexProgram()
         let fragmentProgram = createFragmentProgram()
         guard let vertexProgram = vertexProgram, let fragmentProgram = fragmentProgram else { fatalError("VertexProgram or FragmentProgram not available") }
@@ -69,9 +72,14 @@ class Brush {
         vertexDescriptor.attributes[0].bufferIndex = 0
         vertexDescriptor.attributes[0].offset = 0
         vertexDescriptor.attributes[0].format = .float3
+        
         vertexDescriptor.attributes[1].bufferIndex = 0
         vertexDescriptor.attributes[1].offset = MemoryLayout<SIMD3<Float>>.size
         vertexDescriptor.attributes[1].format = .float
+        
+        vertexDescriptor.attributes[2].bufferIndex = 0
+        vertexDescriptor.attributes[2].offset = 0x20
+        vertexDescriptor.attributes[2].format = .float4
         vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
         return vertexDescriptor
     }

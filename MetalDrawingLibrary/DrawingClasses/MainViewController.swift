@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
         metalView = MetalView(frame: self.view.bounds)
         renderer = Renderer(metalView: metalView, canvas: canvas)
         metalView.delegate = renderer
-        canvas.brushes = [Brush()]
+        canvas.brushes = [Brush(color: SIMD4<Float>(x: 0.14, y: 0.58, z: 0.74, w: 1.0))]
         canvas.currentBrush = canvas.brushes[0]
         print("Hello")
         view.addSubview(metalView)
