@@ -39,9 +39,17 @@ class Line {
     func addPoint(_ point: CGPoint) {
         let points = bezierGenerator.pushPoint(point)
         if (points.isEmpty) { return }
-        for point in points {
-            print("X: \(point.x) Y: \(point.y)")
-            vertexPoints.append(Vertex(position: SIMD3<Float>(x: Float(point.x), y: Float(point.y), z: 0.0), force: 10.0))
+        for i in 0..<(points.count - 1) {
+            let length = points[i].distance(to: points[i + 1])
+            
+            let pointCount = max(length * 100, 1)
+            for j in 0..<Int(pointCount) {
+                let index = CGFloat(j)
+                print(pointCount)
+                let x = points[i].x + (points[i+1].x - points[i].x) * (index / pointCount)
+                let y = points[i].y + (points[i+1].y - points[i].y) * (index / pointCount)
+                vertexPoints.append(Vertex(position: SIMD3<Float>(x: Float(x), y: Float(y), z: 0.0), force: 10.0))
+            }
         }
         vertexBuffer = Renderer.device.makeBuffer(bytes: vertexPoints, length: MemoryLayout<Vertex>.stride * vertexPoints.count, options: [])
         

@@ -44,5 +44,6 @@ fragment half4 basic_fragment(VertexOut fragData [[stage_in]],
     float4 out_color = float4(0.5, 0.3, 0.2, 1.0);
     out_color.a = 1.0 - smoothstep(0.4, 0.5, dist);
     return half4(out_color);
+    //return half4(0.5, 0.3, 0.2, 1.0);
 }
 
