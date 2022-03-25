@@ -45,10 +45,10 @@ class Line {
             let pointCount = max(length * 100, 1)
             for j in 0..<Int(pointCount) {
                 let index = CGFloat(j)
-                print(pointCount)
+                //print(pointCount)
                 let x = points[i].x + (points[i+1].x - points[i].x) * (index / pointCount)
                 let y = points[i].y + (points[i+1].y - points[i].y) * (index / pointCount)
-                vertexPoints.append(Vertex(position: SIMD3<Float>(x: Float(x), y: Float(y), z: 0.0), force: 5.0, color: brush.color))
+                vertexPoints.append(Vertex(position: SIMD3<Float>(x: Float(x), y: Float(y), z: 0.0), force: 10.0, color: brush.color))
             }
         }
         vertexBuffer = Renderer.device.makeBuffer(bytes: vertexPoints, length: MemoryLayout<Vertex>.stride * vertexPoints.count, options: [])

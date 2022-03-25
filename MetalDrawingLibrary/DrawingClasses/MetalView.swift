@@ -20,16 +20,18 @@ class MetalView: UIView {
     var metalLayer: CAMetalLayer!
     var delegate: RendererDelegate?
     var viewportSize: vector_uint2!
+    var scale: CGFloat!
     var timer: CADisplayLink!
     let metalLayerDelegate = MetalLayerDelegate()
-    public override init(frame: CGRect) {
+    public init(frame: CGRect, scale: CGFloat) {
         super.init(frame: frame)
         viewportSize = vector_uint2(x: UInt32(self.frame.width), y: UInt32(self.frame.height))
-        
-        
+        self.scale = scale
         metalLayer = CAMetalLayer()
         metalLayer.frame = self.frame
+        
         metalLayer.delegate = metalLayerDelegate
+        //metalLayer.
         metalLayer.needsDisplayOnBoundsChange = true
         
 
@@ -51,9 +53,13 @@ class MetalView: UIView {
         }
     }
     
-    func updateViewPortSize(size: CGSize) {
+    func updateViewPortSize(size: CGSize, scale: CGFloat) {
+        print(scale)
+        self.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        metalLayer.drawableSize = CGSize(width: size.width * scale, height: size.height * scale)
         metalLayer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        metalLayer.drawableSize = CGSize(width: size.width, height: size.height)
+        self.contentScaleFactor = scale
+        self.scale = scale
         viewportSize.x = UInt32(size.width)
         viewportSize.y = UInt32(size.height)
     }

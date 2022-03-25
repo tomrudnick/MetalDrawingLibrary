@@ -15,9 +15,53 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcZ-UJ-0dO">
+                                <rect key="frame" x="336" y="831" width="58" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Clear"/>
+                                <connections>
+                                    <action selector="clearPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="OMd-QU-Yhm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Si-4r-1VL">
+                                <rect key="frame" x="265" y="831" width="59" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Undo"/>
+                                <connections>
+                                    <action selector="undoPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="X6J-o4-diY"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Tq-Y4o">
+                                <rect key="frame" x="145" y="831" width="93" height="32"/>
+                                <segments>
+                                    <segment title="Blue"/>
+                                    <segment title="Red"/>
+                                </segments>
+                                <connections>
+                                    <action selector="colorChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="bzn-0Q-xui"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OcZ-UJ-0dO" secondAttribute="trailing" constant="20" id="6r5-ta-ece"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="l66-Tq-Y4o" secondAttribute="bottom" id="WDK-Id-klY"/>
+                            <constraint firstItem="3Si-4r-1VL" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZDW-gl-TYK"/>
+                            <constraint firstItem="OcZ-UJ-0dO" firstAttribute="leading" secondItem="3Si-4r-1VL" secondAttribute="trailing" constant="12" id="brK-K0-SM8"/>
+                            <constraint firstItem="OcZ-UJ-0dO" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="elH-6e-Vop"/>
+                            <constraint firstItem="3Si-4r-1VL" firstAttribute="leading" secondItem="l66-Tq-Y4o" secondAttribute="trailing" constant="27" id="iZR-A8-Ywf"/>
+                            <constraint firstItem="OcZ-UJ-0dO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="wqg-IE-Pxy"/>
+                            <constraint firstItem="3Si-4r-1VL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="xqI-Cs-qvA"/>
+                            <constraint firstItem="l66-Tq-Y4o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="145" id="zRG-ed-rbg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="clearButton" destination="OcZ-UJ-0dO" id="Q9b-C0-OXj"/>
+                        <outlet property="colorSwitch" destination="l66-Tq-Y4o" id="3qq-0u-cdy"/>
+                        <outlet property="undoButton" destination="3Si-4r-1VL" id="geJ-5h-ejC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

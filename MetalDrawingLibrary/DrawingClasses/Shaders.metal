@@ -44,3 +44,13 @@ fragment half4 basic_fragment(VertexOut fragData [[stage_in]],
     return half4(out_color);
 }
 
+fragment float4 fragment_maliang(VertexOut fragData [[stage_in]],
+                              float2 pointCoord [[point_coord]]){
+    
+    float dist = length(pointCoord - float2(0.5));
+    if (dist >= 0.5) {
+        return float4(0);
+    }
+    return fragData.color;
+}
+

@@ -13,17 +13,24 @@ class MainViewController: UIViewController {
     var metalView: MetalView!
     var renderer: Renderer!
     var canvas: Canvas!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var undoButton: UIButton!
+    @IBOutlet weak var colorSwitch: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         canvas = Canvas()
-        metalView = MetalView(frame: self.view.bounds)
+        metalView = MetalView(frame: self.view.bounds, scale: view.window?.screen.nativeScale ?? 1.0)
         renderer = Renderer(metalView: metalView, canvas: canvas)
         metalView.delegate = renderer
         canvas.brushes = [Brush(color: SIMD4<Float>(x: 0.14, y: 0.58, z: 0.74, w: 1.0))]
         canvas.currentBrush = canvas.brushes[0]
-        print("Hello")
+        
         view.addSubview(metalView)
+        self.view.bringSubviewToFront(clearButton)
+        self.view.bringSubviewToFront(undoButton)
+        self.view.bringSubviewToFront(colorSwitch)
     }
     
     override func viewDidLayoutSubviews() {
@@ -34,7 +41,7 @@ class MainViewController: UIViewController {
             view.contentScaleFactor = scale
             print(self.view.bounds)
             metalView.frame = self.view.bounds
-            metalView.updateViewPortSize(size: layerSize)
+            metalView.updateViewPortSize(size: layerSize, scale: scale)
             renderer.recreateTexture()
         }
     }
@@ -74,5 +81,26 @@ class MainViewController: UIViewController {
         let newx = (CGFloat(metalView.viewportSize.x) / 512 * 2.0) * ( x / (CGFloat(metalView.viewportSize.x) / 2 ) - 1)
         let newy = -1 * (CGFloat(metalView.viewportSize.y) / 512 * 2.0) * (y / (CGFloat(metalView.viewportSize.y) / 2 ) - 1)
         return CGPoint(x: newx, y: newy)
+    }
+    
+    
+    @IBAction func clearPressed(_ sender: Any) {
+        self.canvas.lines = []
+    }
+    
+    @IBAction func undoPressed(_ sender: Any) {
+        self.canvas.lines.removeLast()
+    }
+    
+    @IBAction func colorChanged(_ sender: Any) {
+        switch colorSwitch.selectedSegmentIndex {
+        case 0:
+            canvas.currentBrush?.color = SIMD4<Float>(x: 0.14, y: 0.58, z: 0.74, w: 1.0)
+        case 1:
+            canvas.currentBrush?.color = SIMD4<Float>(x: 0.68, y: 0.22, z: 0.156, w: 1.0)
+        default:
+            break
+        }
+        
     }
 }
