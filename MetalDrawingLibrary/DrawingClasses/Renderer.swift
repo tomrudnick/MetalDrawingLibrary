@@ -44,8 +44,8 @@ class Renderer: NSObject, RendererDelegate {
     func makeTexture() -> MTLTexture {
         let textureDescriptor = MTLTextureDescriptor()
         textureDescriptor.textureType = .type2DMultisample
-        textureDescriptor.width = Int(metalView.viewportSize.x * UInt32(metalView.scale))
-        textureDescriptor.height = Int(metalView.viewportSize.y * UInt32(metalView.scale))
+        textureDescriptor.width = Int(CGFloat(metalView.viewportSize.x) * metalView.scale)
+        textureDescriptor.height = Int(CGFloat(metalView.viewportSize.y) * metalView.scale)
         textureDescriptor.sampleCount = MetalView.sampleCount
         textureDescriptor.pixelFormat = .bgra8Unorm
         let newTexture = metalLayer.device?.makeTexture(descriptor: textureDescriptor)
@@ -79,7 +79,7 @@ class Renderer: NSObject, RendererDelegate {
         
         let renderEncoder = commandBuffer
           .makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
-        renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 0.0, width: Double(metalView.viewportSize.x * UInt32(metalView.scale)), height: Double(metalView.viewportSize.y * UInt32(metalView.scale)), znear: 0.0, zfar: 1.0))
+        renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 0.0, width: Double(metalView.viewportSize.x) * metalView.scale, height: Double(metalView.viewportSize.y) * metalView.scale, znear: 0.0, zfar: 1.0))
         //print("X: \(metalView.viewportSize.x) Y: \(metalView.viewportSize.y) ")
         var addedLine = false
         if let currentLine = canvas.activeLine {

@@ -89,7 +89,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func undoPressed(_ sender: Any) {
-        self.canvas.lines.removeLast()
+        if !self.canvas.lines.isEmpty {
+            self.canvas.lines.removeLast()
+        }
     }
     
     @IBAction func colorChanged(_ sender: Any) {
