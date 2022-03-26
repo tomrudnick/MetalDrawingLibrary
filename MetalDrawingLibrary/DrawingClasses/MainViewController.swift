@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import PDFKit
 
 class MainViewController: UIViewController {
     var metalView: MetalView!
@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupPDFView()
         canvas = Canvas()
         metalView = MetalView(frame: self.view.bounds, scale: view.window?.screen.nativeScale ?? 1.0)
         renderer = Renderer(metalView: metalView, canvas: canvas)
@@ -31,6 +32,30 @@ class MainViewController: UIViewController {
         self.view.bringSubviewToFront(clearButton)
         self.view.bringSubviewToFront(undoButton)
         self.view.bringSubviewToFront(colorSwitch)
+        
+        
+        // PDF SETUP STUFF
+        renderer.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        metalView.metalLayer.backgroundColor = CGColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        metalView.metalLayer.isOpaque = false
+        
+    }
+    
+    func setupPDFView(){
+        let pdfView = PDFView()
+        view.addSubview(pdfView)
+        pdfView.translatesAutoresizingMaskIntoConstraints = false
+        pdfView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        pdfView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        pdfView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        pdfView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        guard let path = Bundle.main.url(forResource: "example", withExtension: "pdf") else { return }
+        
+        if let document = PDFDocument(url: path) {
+            print("Doc added")
+            pdfView.document = document
+        }
     }
     
     override func viewDidLayoutSubviews() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E28D155A27EF190100EC81C8 /* example.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E28D155927EF190100EC81C8 /* example.pdf */; };
 		E297524227EC68A000DEA3E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524127EC68A000DEA3E1 /* AppDelegate.swift */; };
 		E297524427EC68A000DEA3E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524327EC68A000DEA3E1 /* SceneDelegate.swift */; };
 		E297524627EC68A000DEA3E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524527EC68A000DEA3E1 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E28D155927EF190100EC81C8 /* example.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = example.pdf; sourceTree = "<group>"; };
 		E297523E27EC68A000DEA3E1 /* MetalDrawingLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalDrawingLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E297524127EC68A000DEA3E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E297524327EC68A000DEA3E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				E297524127EC68A000DEA3E1 /* AppDelegate.swift */,
 				E297524327EC68A000DEA3E1 /* SceneDelegate.swift */,
 				E297524527EC68A000DEA3E1 /* ViewController.swift */,
+				E28D155927EF190100EC81C8 /* example.pdf */,
 				E297524727EC68A000DEA3E1 /* Main.storyboard */,
 				E297524A27EC68A100DEA3E1 /* Assets.xcassets */,
 				E297524C27EC68A100DEA3E1 /* LaunchScreen.storyboard */,
@@ -169,6 +172,7 @@
 				E297524E27EC68A100DEA3E1 /* LaunchScreen.storyboard in Resources */,
 				E297524B27EC68A100DEA3E1 /* Assets.xcassets in Resources */,
 				E297524927EC68A000DEA3E1 /* Main.storyboard in Resources */,
+				E28D155A27EF190100EC81C8 /* example.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

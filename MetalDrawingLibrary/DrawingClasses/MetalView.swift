@@ -27,13 +27,13 @@ class MetalView: UIView {
         super.init(frame: frame)
         viewportSize = vector_uint2(x: UInt32(self.frame.width), y: UInt32(self.frame.height))
         self.scale = scale
+        self.isOpaque = false
         metalLayer = CAMetalLayer()
         metalLayer.frame = self.frame
         
         metalLayer.delegate = metalLayerDelegate
-        //metalLayer.
         metalLayer.needsDisplayOnBoundsChange = true
-        
+
 
         self.layer.addSublayer(metalLayer)
         

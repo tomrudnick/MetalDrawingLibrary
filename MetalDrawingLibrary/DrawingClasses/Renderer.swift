@@ -21,6 +21,7 @@ class Renderer: NSObject, RendererDelegate {
     var canvas: Canvas!
     var texture: MTLTexture!
     var depthState: MTLDepthStencilState!
+    var clearColor: MTLClearColor!
     
     
     init(metalView: MetalView, canvas: Canvas) {
@@ -39,6 +40,12 @@ class Renderer: NSObject, RendererDelegate {
         depthStencilDesc.depthCompareFunction = .always
         depthStencilDesc.isDepthWriteEnabled = false
         depthState = metalLayer.device!.makeDepthStencilState(descriptor: depthStencilDesc)!
+        
+        self.clearColor = MTLClearColor(
+            red: 1.0,
+            green: 1.0,
+            blue: 1.0,
+            alpha: 1.0)
     }
     
     func makeTexture() -> MTLTexture {
@@ -71,11 +78,7 @@ class Renderer: NSObject, RendererDelegate {
         renderPassDescriptor.colorAttachments[0].loadAction = .clear
         renderPassDescriptor.colorAttachments[0].storeAction = .multisampleResolve
         
-        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(
-          red: 0.0,
-          green: 104.0/255.0,
-          blue: 55.0/255.0,
-          alpha: 1.0)
+        renderPassDescriptor.colorAttachments[0].clearColor = clearColor
         
         let renderEncoder = commandBuffer
           .makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
