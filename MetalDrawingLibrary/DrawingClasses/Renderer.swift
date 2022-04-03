@@ -8,6 +8,7 @@
 import Foundation
 import MetalKit
 import simd
+import Alloy
 
 class Renderer: NSObject, RendererDelegate {
    
@@ -22,6 +23,8 @@ class Renderer: NSObject, RendererDelegate {
     var texture: MTLTexture!
     var depthState: MTLDepthStencilState!
     var clearColor: MTLClearColor!
+    var metalContext: MTLContext!
+    var cgContext: CGContext!
     
     
     init(metalView: MetalView, canvas: Canvas) {
@@ -32,6 +35,7 @@ class Renderer: NSObject, RendererDelegate {
         self.metalLayer = metalView.metalLayer
         metalLayer.device = Renderer.device
         metalLayer.framebufferOnly = true
+        metalContext = try! MTLContext(device: metalLayer.device!)
         commandQueue = Renderer.device.makeCommandQueue()
         Renderer.library = Renderer.device.makeDefaultLibrary()
         texture = makeTexture()
@@ -84,13 +88,19 @@ class Renderer: NSObject, RendererDelegate {
           .makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 0.0, width: Double(metalView.viewportSize.x) * metalView.scale, height: Double(metalView.viewportSize.y) * metalView.scale, znear: 0.0, zfar: 1.0))
         //print("X: \(metalView.viewportSize.x) Y: \(metalView.viewportSize.y) ")
+        renderEncoder.setRenderPipelineState(canvas.pdf!.pipelineState!)
+        renderEncoder.setVertexBytes(&metalView.viewportSize, length: MemoryLayout<vector_uint2>.stride, index: 1)
+        renderEncoder.setVertexBuffer(canvas.pdf!.vertexBuffer!, offset: 0, index: 0)
+        renderEncoder.setFragmentTexture(canvas.pdf!.texture!, index: 0)
+        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: canvas.pdf!.vertices.count)
+        
         var addedLine = false
         if let currentLine = canvas.activeLine {
             canvas.lines.append(currentLine)
             addedLine = true
         }
         for line in canvas.lines {
-            if let vertexBuffer = line.vertexBuffer, /*let indexBuffer = line.indexBuffer, line.indexCount != 0,*/ let pipelineState = line.brush.pipelineState {
+            if let vertexBuffer = line.vertexBuffer, let pipelineState = line.brush.pipelineState {
                 renderEncoder.setRenderPipelineState(pipelineState)
                 //renderEncoder.setDepthStencilState(depthState)
                 renderEncoder.setVertexBytes(&metalView.viewportSize, length: MemoryLayout<vector_uint2>.stride, index: 1)

@@ -14,6 +14,8 @@ class Canvas {
     var currentBrush: Brush?
     var lines: [Line]
     var activeLine: Line?
+    var pdf: Texture?
+    
     init() {
         self.brushes = []
         self.lines = []

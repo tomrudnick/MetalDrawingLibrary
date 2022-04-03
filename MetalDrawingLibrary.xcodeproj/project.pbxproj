@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E23BFE3F27F72F2E00A11A14 /* photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E23BFE3E27F72F2D00A11A14 /* photo.jpg */; };
+		E23BFE4127F740B600A11A14 /* pdf2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E23BFE4027F740B600A11A14 /* pdf2.pdf */; };
 		E28D155A27EF190100EC81C8 /* example.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E28D155927EF190100EC81C8 /* example.pdf */; };
 		E297524227EC68A000DEA3E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524127EC68A000DEA3E1 /* AppDelegate.swift */; };
 		E297524427EC68A000DEA3E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524327EC68A000DEA3E1 /* SceneDelegate.swift */; };
@@ -25,9 +27,13 @@
 		E297526727EC68DF00DEA3E1 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526227EC68DF00DEA3E1 /* Math.swift */; };
 		E297526927EC68F000DEA3E1 /* ViewController(Deprecated).swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526827EC68F000DEA3E1 /* ViewController(Deprecated).swift */; };
 		E297526B27EC691400DEA3E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297526A27EC691400DEA3E1 /* Canvas.swift */; };
+		E2BE71C127F3514300B8CACC /* Alloy in Frameworks */ = {isa = PBXBuildFile; productRef = E2BE71C027F3514300B8CACC /* Alloy */; };
+		E2BE71C527F491F900B8CACC /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BE71C427F491F900B8CACC /* Texture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E23BFE3E27F72F2D00A11A14 /* photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo.jpg; sourceTree = "<group>"; };
+		E23BFE4027F740B600A11A14 /* pdf2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pdf2.pdf; sourceTree = "<group>"; };
 		E28D155927EF190100EC81C8 /* example.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = example.pdf; sourceTree = "<group>"; };
 		E297523E27EC68A000DEA3E1 /* MetalDrawingLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalDrawingLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E297524127EC68A000DEA3E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +54,7 @@
 		E297526227EC68DF00DEA3E1 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		E297526827EC68F000DEA3E1 /* ViewController(Deprecated).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController(Deprecated).swift"; sourceTree = "<group>"; };
 		E297526A27EC691400DEA3E1 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		E2BE71C427F491F900B8CACC /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BE71C127F3514300B8CACC /* Alloy in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +94,8 @@
 				E297524327EC68A000DEA3E1 /* SceneDelegate.swift */,
 				E297524527EC68A000DEA3E1 /* ViewController.swift */,
 				E28D155927EF190100EC81C8 /* example.pdf */,
+				E23BFE3E27F72F2D00A11A14 /* photo.jpg */,
+				E23BFE4027F740B600A11A14 /* pdf2.pdf */,
 				E297524727EC68A000DEA3E1 /* Main.storyboard */,
 				E297524A27EC68A100DEA3E1 /* Assets.xcassets */,
 				E297524C27EC68A100DEA3E1 /* LaunchScreen.storyboard */,
@@ -107,6 +117,7 @@
 				E297525927EC68C700DEA3E1 /* Line.swift */,
 				E297525827EC68C700DEA3E1 /* Renderer.swift */,
 				E297525627EC68C700DEA3E1 /* Shaders.metal */,
+				E2BE71C427F491F900B8CACC /* Texture.swift */,
 			);
 			path = DrawingClasses;
 			sourceTree = "<group>";
@@ -127,6 +138,9 @@
 			dependencies = (
 			);
 			name = MetalDrawingLibrary;
+			packageProductDependencies = (
+				E2BE71C027F3514300B8CACC /* Alloy */,
+			);
 			productName = MetalDrawingLibrary;
 			productReference = E297523E27EC68A000DEA3E1 /* MetalDrawingLibrary.app */;
 			productType = "com.apple.product-type.application";
@@ -155,6 +169,9 @@
 				Base,
 			);
 			mainGroup = E297523527EC68A000DEA3E1;
+			packageReferences = (
+				E2BE71BF27F3514300B8CACC /* XCRemoteSwiftPackageReference "Alloy" */,
+			);
 			productRefGroup = E297523F27EC68A000DEA3E1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -171,6 +188,8 @@
 			files = (
 				E297524E27EC68A100DEA3E1 /* LaunchScreen.storyboard in Resources */,
 				E297524B27EC68A100DEA3E1 /* Assets.xcassets in Resources */,
+				E23BFE4127F740B600A11A14 /* pdf2.pdf in Resources */,
+				E23BFE3F27F72F2E00A11A14 /* photo.jpg in Resources */,
 				E297524927EC68A000DEA3E1 /* Main.storyboard in Resources */,
 				E28D155A27EF190100EC81C8 /* example.pdf in Resources */,
 			);
@@ -184,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E297525A27EC68C700DEA3E1 /* Shaders.metal in Sources */,
+				E2BE71C527F491F900B8CACC /* Texture.swift in Sources */,
 				E297526427EC68DF00DEA3E1 /* BezierGenerator.swift in Sources */,
 				E297526927EC68F000DEA3E1 /* ViewController(Deprecated).swift in Sources */,
 				E297524627EC68A000DEA3E1 /* ViewController.swift in Sources */,
@@ -414,6 +434,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E2BE71BF27F3514300B8CACC /* XCRemoteSwiftPackageReference "Alloy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/s1ddok/Alloy.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2BE71C027F3514300B8CACC /* Alloy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2BE71BF27F3514300B8CACC /* XCRemoteSwiftPackageReference "Alloy" */;
+			productName = Alloy;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E297523627EC68A000DEA3E1 /* Project object */;
 }

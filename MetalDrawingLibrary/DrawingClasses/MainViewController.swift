@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import PDFKit
+import Alloy
 
 class MainViewController: UIViewController {
     var metalView: MetalView!
@@ -19,26 +20,31 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupPDFView()
+        //setupPDFView() //Comment out if you dont want to use the PDF viewer
         canvas = Canvas()
         metalView = MetalView(frame: self.view.bounds, scale: view.window?.screen.nativeScale ?? 1.0)
         renderer = Renderer(metalView: metalView, canvas: canvas)
         metalView.delegate = renderer
         canvas.brushes = [Brush(color: SIMD4<Float>(x: 0.14, y: 0.58, z: 0.74, w: 1.0))]
         canvas.currentBrush = canvas.brushes[0]
+        setupPDFView2()
         
-        view.addSubview(metalView)
+        view.addSubview(metalView) //COMMENT OUT if you only want to test the PDF View Functionality
         self.view.bringSubviewToFront(clearButton)
         self.view.bringSubviewToFront(undoButton)
         self.view.bringSubviewToFront(colorSwitch)
         
         
-        // PDF SETUP STUFF
-        renderer.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        metalView.metalLayer.backgroundColor = CGColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        metalView.metalLayer.isOpaque = false
+        // PDF SETUP STUFF //This will make the MetalLayer transparent so you can see the PDF VIEW
+        //renderer.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        //metalView.metalLayer.backgroundColor = CGColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        //metalView.metalLayer.isOpaque = false
         
+    }
+    
+    func setupPDFView2(){
+        guard let path = Bundle.main.url(forResource: "pdf2", withExtension: "pdf") else { return }
+        canvas.pdf = Texture(url: path)
     }
     
     func setupPDFView(){
@@ -56,6 +62,25 @@ class MainViewController: UIViewController {
             print("Doc added")
             pdfView.document = document
         }
+    }
+    
+    func drawPDFfromURL(url: URL) -> UIImage? {
+        guard let document = CGPDFDocument(url as CFURL) else { return nil }
+        guard let page = document.page(at: 1) else { return nil }
+
+        let pageRect = page.getBoxRect(.mediaBox)
+        let renderer = UIGraphicsImageRenderer(size: pageRect.size)
+        let img = renderer.image { ctx in
+            UIColor.white.set()
+            ctx.fill(pageRect)
+
+            ctx.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
+            ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
+
+            ctx.cgContext.drawPDFPage(page)
+        }
+
+        return img
     }
     
     override func viewDidLayoutSubviews() {

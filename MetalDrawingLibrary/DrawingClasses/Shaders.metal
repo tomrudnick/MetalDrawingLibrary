@@ -20,7 +20,14 @@ struct VertexOut {
     float pointSize [[point_size]];
     float4 color;
 };
-
+struct TVertexIn{
+    float3 position [[attribute(0)]];
+    float2 texturePosition [[attribute(1)]];
+};
+struct TVertexOut {
+    float4 position [[position]];
+    float2 texturePosition;
+};
 
 vertex VertexOut basic_vertex( const VertexIn vertexIn [[stage_in]], constant vector_uint2 *viewportSizePointer [[buffer(1)]]) {
     
@@ -54,3 +61,21 @@ fragment float4 fragment_maliang(VertexOut fragData [[stage_in]],
     return fragData.color;
 }
 
+vertex TVertexOut tvertex(const TVertexIn vertexIn [[stage_in]], constant vector_uint2 *viewportSizePointer [[buffer(1)]]) {
+    
+    float2 pixelSpacePosition = vertexIn.position.xy;
+    vector_float2 viewportSize = vector_float2(*viewportSizePointer);
+    
+    TVertexOut vertexOut;
+    
+    //vertexOut.position = float4(pixelSpacePosition, vertexIn.position.z, 1.0);
+    vertexOut.position = float4(pixelSpacePosition / (viewportSize / 1024 * 0.5), vertexIn.position.z, 1.0);
+    vertexOut.texturePosition = vertexIn.texturePosition;
+    return vertexOut;
+}
+
+fragment half4 tfragment(TVertexOut vertexIn [[ stage_in ]], texture2d<float> texture [[ texture(0)]]){
+    constexpr sampler defaultSmapler;
+    float4 color = texture.sample(defaultSmapler, vertexIn.texturePosition);
+    return half4(color.r,color.g,color.b, 1);
+}
