@@ -8,3 +8,4 @@
 - Lasso Tool
 - Mehrseitig umgehen
 - Verschiedene Brushes
+- effizienter Linien malen
