@@ -29,14 +29,18 @@ struct TVertexOut {
     float2 texturePosition;
 };
 
-vertex VertexOut basic_vertex(const VertexIn vertexIn [[stage_in]], constant vector_uint2 *viewportSizePointer [[buffer(1)]]) {
+vertex VertexOut basic_vertex( const VertexIn vertexIn [[stage_in]], constant vector_uint2 *viewportSizePointer [[buffer(1)]], constant vector_float2 *zoom [[buffer(2)]], constant vector_float2 *zoomPoint [[buffer(3)]]) {
     
     float2 pixelSpacePosition = vertexIn.position.xy;
     vector_float2 viewportSize = vector_float2(*viewportSizePointer);
+    float2 center = *zoomPoint ;
+    pixelSpacePosition = (*zoom * (pixelSpacePosition - *zoomPoint) + *zoomPoint)/ (viewportSize / 512 * 2.0) ;
+    //pixelSpacePosition -= center/2;
+    //pixelSpacePosition = *zoom * (pixelSpacePosition );
     
     VertexOut vertexOut;
     
-    vertexOut.position = float4(pixelSpacePosition / (viewportSize / 512 * 2.0), vertexIn.position.z, 1.0);
+    vertexOut.position = float4(pixelSpacePosition , vertexIn.position.z, 1.0);
     vertexOut.pointSize = vertexIn.pointSize;
     vertexOut.color = vertexIn.color;
     return vertexOut;

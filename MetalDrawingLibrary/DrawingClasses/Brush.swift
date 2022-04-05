@@ -21,6 +21,8 @@ class Brush {
     var vertexProgram: MTLFunction?
     var fragmentProgram: MTLFunction?
     var color: SIMD4<Float>
+    var lineWidth: Float = 40.0
+    var minWidth : Float = 4.0
     
     init(color: SIMD4<Float>) {
         self.color = color

@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
         self.view.bringSubviewToFront(clearButton)
         self.view.bringSubviewToFront(undoButton)
         self.view.bringSubviewToFront(colorSwitch)
-        
+        addZoom()
         
         // PDF SETUP STUFF //This will make the MetalLayer transparent so you can see the PDF VIEW
         //renderer.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
@@ -64,6 +64,13 @@ class MainViewController: UIViewController {
             pdfView.document = document
         }
     }
+    
+    func addZoom(){
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(_:)))
+        
+        view.addGestureRecognizer(pinch)
+    }
+
     
     func drawPDFfromURL(url: URL) -> UIImage? {
         guard let document = CGPDFDocument(url as CFURL) else { return nil }
@@ -101,24 +108,35 @@ class MainViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, let brush = canvas.currentBrush {
-            let position = touch.location(in: view)
+            if(touch.type != UITouch.TouchType.pencil){
+                return
+            }
+            let position = touch.preciseLocation(in: view)
             canvas.activeLine = Line(brush: brush)
-            canvas.activeLine?.addPoint(metalView.convert(x: position.x, y: position.y))
+            canvas.activeLine?.addPoint(convert(x: position.x, y: position.y), touch.force/touch.maximumPossibleForce)
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            let position = touch.location(in: view)
-            //print(convert(x: position.x, y: position.y))
-            canvas.activeLine?.addPoint(metalView.convert(x: position.x, y: position.y))
+            if(touch.type != UITouch.TouchType.pencil){
+                return
+            }
+            let position = touch.preciseLocation(in: view)
+            let force = touch.force / touch.maximumPossibleForce
+            canvas.activeLine?.addPoint(convert(x: position.x, y: position.y), force)
         }
     }
     
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            let position = touch.location(in: view)
-            canvas.activeLine?.addPoint(metalView.convert(x: position.x, y: position.y))
+            if(touch.type != UITouch.TouchType.pencil){
+                return
+            }
+            let position = touch.preciseLocation(in: view)
+            let force = touch.force
+            canvas.activeLine?.addPoint(convert(x: position.x, y: position.y), force/touch.maximumPossibleForce)
             if let line = canvas.activeLine {
                 canvas.lines.append(line)
                 canvas.activeLine = nil
@@ -126,6 +144,35 @@ class MainViewController: UIViewController {
         }
     }
     
+    func convert (x: CGFloat, y: CGFloat)-> CGPoint{
+        let newx = (CGFloat(metalView.viewportSize.x) / 512 * 2.0) * ( x / (CGFloat(metalView.viewportSize.x) / 2 ) - 1)
+        let newy = -1 * (CGFloat(metalView.viewportSize.y) / 512 * 2.0) * (y / (CGFloat(metalView.viewportSize.y) / 2 ) - 1)
+        return CGPoint(x: newx, y: newy)
+    }
+    
+    var deltaScale : Float = 0.0
+    @objc func didPinch(_ sender: UIPinchGestureRecognizer){
+        if(sender.state == .began){
+            var location = sender.location(in: view)
+            location = convert(x: location.x, y: location.y)
+            canvas.zoomPoint = SIMD2<Float>(Float(location.x),Float(location.y))
+            print("zoomPoint: \(canvas.zoomPoint)")
+            deltaScale = canvas.zoom - 1
+        }
+        if (sender.state == .changed){
+            let scale = Float(sender.scale)
+            var zoom = scale + deltaScale
+            if(scale<1){
+                zoom = zoom - 1 + scale
+            }
+            if (zoom > 5){
+                zoom = 5
+            }else if(zoom<0.2){
+                zoom = 0.2
+            }
+            canvas.zoom = zoom
+        }
+    }
     
     @IBAction func clearPressed(_ sender: Any) {
         self.canvas.lines = []
@@ -137,6 +184,7 @@ class MainViewController: UIViewController {
         }
     }
     
+   
     @IBAction func colorChanged(_ sender: Any) {
         switch colorSwitch.selectedSegmentIndex {
         case 0:
