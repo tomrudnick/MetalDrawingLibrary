@@ -21,8 +21,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //setupPDFView() //Comment out if you dont want to use the PDF viewer
-        canvas = Canvas()
+        
         metalView = MetalView(frame: self.view.bounds, scale: view.window?.screen.nativeScale ?? 1.0)
+        canvas = Canvas(metalView: metalView)
         renderer = Renderer(metalView: metalView, canvas: canvas)
         metalView.delegate = renderer
         canvas.brushes = [Brush(color: SIMD4<Float>(x: 0.14, y: 0.58, z: 0.74, w: 1.0))]
@@ -44,7 +45,7 @@ class MainViewController: UIViewController {
     
     func setupPDFView2(){
         guard let path = Bundle.main.url(forResource: "pdf2", withExtension: "pdf") else { return }
-        canvas.pdf = Texture(url: path)
+        canvas.pdf = Texture(url: path, midPosition: CGPoint(x: view.bounds.width / 2, y: view.bounds.height / 2), canvas: canvas)
     }
     
     func setupPDFView(){
@@ -102,7 +103,7 @@ class MainViewController: UIViewController {
         if let touch = touches.first, let brush = canvas.currentBrush {
             let position = touch.location(in: view)
             canvas.activeLine = Line(brush: brush)
-            canvas.activeLine?.addPoint(convert(x: position.x, y: position.y))
+            canvas.activeLine?.addPoint(metalView.convert(x: position.x, y: position.y))
         }
     }
     
@@ -110,27 +111,19 @@ class MainViewController: UIViewController {
         if let touch = touches.first {
             let position = touch.location(in: view)
             //print(convert(x: position.x, y: position.y))
-            canvas.activeLine?.addPoint(convert(x: position.x, y: position.y))
+            canvas.activeLine?.addPoint(metalView.convert(x: position.x, y: position.y))
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let position = touch.location(in: view)
-            canvas.activeLine?.addPoint(convert(x: position.x, y: position.y))
+            canvas.activeLine?.addPoint(metalView.convert(x: position.x, y: position.y))
             if let line = canvas.activeLine {
                 canvas.lines.append(line)
                 canvas.activeLine = nil
             }
         }
-    }
-    
-    
-    
-    func convert (x: CGFloat, y: CGFloat)-> CGPoint{
-        let newx = (CGFloat(metalView.viewportSize.x) / 512 * 2.0) * ( x / (CGFloat(metalView.viewportSize.x) / 2 ) - 1)
-        let newy = -1 * (CGFloat(metalView.viewportSize.y) / 512 * 2.0) * (y / (CGFloat(metalView.viewportSize.y) / 2 ) - 1)
-        return CGPoint(x: newx, y: newy)
     }
     
     

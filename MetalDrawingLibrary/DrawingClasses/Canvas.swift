@@ -15,8 +15,9 @@ class Canvas {
     var lines: [Line]
     var activeLine: Line?
     var pdf: Texture?
-    
-    init() {
+    weak var metalView: MetalView!
+    init(metalView: MetalView) {
+        self.metalView = metalView
         self.brushes = []
         self.lines = []
     }

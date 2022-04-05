@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E23BFE3F27F72F2E00A11A14 /* photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E23BFE3E27F72F2D00A11A14 /* photo.jpg */; };
 		E23BFE4127F740B600A11A14 /* pdf2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E23BFE4027F740B600A11A14 /* pdf2.pdf */; };
+		E25171A327F9DEE500EB02FA /* photo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E25171A227F9DEE500EB02FA /* photo2.jpg */; };
 		E28D155A27EF190100EC81C8 /* example.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E28D155927EF190100EC81C8 /* example.pdf */; };
 		E297524227EC68A000DEA3E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524127EC68A000DEA3E1 /* AppDelegate.swift */; };
 		E297524427EC68A000DEA3E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297524327EC68A000DEA3E1 /* SceneDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		E23BFE3E27F72F2D00A11A14 /* photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo.jpg; sourceTree = "<group>"; };
 		E23BFE4027F740B600A11A14 /* pdf2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pdf2.pdf; sourceTree = "<group>"; };
+		E25171A227F9DEE500EB02FA /* photo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo2.jpg; sourceTree = "<group>"; };
 		E28D155927EF190100EC81C8 /* example.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = example.pdf; sourceTree = "<group>"; };
 		E297523E27EC68A000DEA3E1 /* MetalDrawingLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalDrawingLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E297524127EC68A000DEA3E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				E297524527EC68A000DEA3E1 /* ViewController.swift */,
 				E28D155927EF190100EC81C8 /* example.pdf */,
 				E23BFE3E27F72F2D00A11A14 /* photo.jpg */,
+				E25171A227F9DEE500EB02FA /* photo2.jpg */,
 				E23BFE4027F740B600A11A14 /* pdf2.pdf */,
 				E297524727EC68A000DEA3E1 /* Main.storyboard */,
 				E297524A27EC68A100DEA3E1 /* Assets.xcassets */,
@@ -188,6 +191,7 @@
 			files = (
 				E297524E27EC68A100DEA3E1 /* LaunchScreen.storyboard in Resources */,
 				E297524B27EC68A100DEA3E1 /* Assets.xcassets in Resources */,
+				E25171A327F9DEE500EB02FA /* photo2.jpg in Resources */,
 				E23BFE4127F740B600A11A14 /* pdf2.pdf in Resources */,
 				E23BFE3F27F72F2E00A11A14 /* photo.jpg in Resources */,
 				E297524927EC68A000DEA3E1 /* Main.storyboard in Resources */,

@@ -17,22 +17,26 @@ struct TVertex{
 }
 
 class Texture{
+    
+    enum TexturePos: Int {
+        case bottomLeft = 0
+        case bottomRight = 3
+        case topLeft = 2
+        case topRight = 1
+    }
+    
     var pipelineState: MTLRenderPipelineState?
     var texture: MTLTexture?
     var vertexProgram: MTLFunction?
     var fragmentProgram: MTLFunction?
-    var vertices : [TVertex] = [
-        TVertex(position: SIMD3<Float>(0,0.684,0), texturePosition: SIMD2<Float>(0,1)),
-        TVertex(position: SIMD3<Float>(0,0,0), texturePosition: SIMD2<Float>(0,0)),
-        TVertex(position: SIMD3<Float>(0.549,0,0), texturePosition: SIMD2<Float>(1,0)),
-        TVertex(position: SIMD3<Float>(0.549,0,0), texturePosition: SIMD2<Float>(1,0)),
-        TVertex(position: SIMD3<Float>(0.549,0.684,0), texturePosition: SIMD2<Float>(1,1)),
-        TVertex(position: SIMD3<Float>(0,0.684,0), texturePosition: SIMD2<Float>(0,1))
-    ]
+    var vertices : [TVertex] = []
     var vertexBuffer: MTLBuffer?
+    var image: UIImage?
+    weak var canvas: Canvas!
     
-    init(url: URL) {
-        let pdfIMG = drawPDFfromURL(url: url)
+    init(url: URL, midPosition: CGPoint, canvas: Canvas) {
+        self.canvas = canvas
+        image = drawPDFfromURL(url: url)
         
         let textureLoader = MTKTextureLoader(device: Renderer.device)
         
@@ -42,19 +46,17 @@ class Texture{
             texture = Renderer.device.makeTexture(descriptor: textureDescriptor)
         }*/
         let textureLoaderOptions: [MTKTextureLoader.Option: Any] = [.origin: MTKTextureLoader.Origin.bottomLeft]
-        /*if let textureURL = Bundle.main.url(forResource: "photo", withExtension: "jpg"){
+        /*if let textureURL = Bundle.main.url(forResource: "photo2", withExtension: "jpg"){
             do {
-                texture = try textureLoader.newTexture(URL: textureURL, options: textureLoaderOptions)
+                texture = try textureLoader.newTexture(URL: textureURL, options: [:])
             }catch{
                 print("not created")
             }
         }*/
-        let img2 = UIImage(data: pdfIMG!.pngData()!)
-        
-        if let img = img2?.cgImage {
-            print("COLOR Space \(img.colorSpace!)")
+        if let img = image?.cgImage {
+            vertices = generateVertex(size: image!.size, maxSize: CGSize(width: 800, height: 800), midPoint: midPosition)
             do {
-                //texture = try textureLoader.newTexture(data: img, options: textureLoaderOptions)
+                //texture = try textureLoader.newTexture(data: img, options: [:])
                 texture = try textureLoader.newTexture(cgImage: img, options: textureLoaderOptions)
             } catch {
                 print(error.localizedDescription)
@@ -83,18 +85,34 @@ class Texture{
        
     }
     
+    
+    func generateVertex(size: CGSize, maxSize: CGSize, midPoint: CGPoint) -> [TVertex] {
+        //let maxSize = CGSize(width: max(size.width, maxSize.width), height: max(size.height, maxSize.height))
+        let maxSize = CGSize(width: size.width / 2, height: size.height / 2)
+        //print(midPoint)
+        let bl = TVertex(position: canvas.metalView.convertToSIMD3(x: midPoint.x - maxSize.width / 2, y: midPoint.y - maxSize.height / 2), texturePosition: SIMD2<Float>(0,1))
+        let br = TVertex(position: canvas.metalView.convertToSIMD3(x: midPoint.x + maxSize.width / 2, y: midPoint.y - maxSize.height / 2), texturePosition: SIMD2<Float>(1,1))
+        let tl = TVertex(position: canvas.metalView.convertToSIMD3(x: midPoint.x - maxSize.width / 2, y: midPoint.y + maxSize.height / 2), texturePosition: SIMD2<Float>(0,0))
+        let tr = TVertex(position: canvas.metalView.convertToSIMD3(x: midPoint.x + maxSize.width / 2, y: midPoint.y + maxSize.height / 2), texturePosition: SIMD2<Float>(1,0))
+        return [bl, tr, tl, br, tr, bl]
+    }
+    
+    //func generateFrameVertices(
+    
     func drawPDFfromURL(url: URL) -> UIImage? {
         guard let document = CGPDFDocument(url as CFURL) else { return nil }
         guard let page = document.page(at: 1) else { return nil }
 
         let pageRect = page.getBoxRect(.mediaBox)
-        let renderer = UIGraphicsImageRenderer(size: pageRect.size)
+        let scale = 5.0
+        let scaledRect = CGRect(x: pageRect.minX, y: pageRect.minY, width: pageRect.width * scale, height: pageRect.height * scale)
+        let renderer = UIGraphicsImageRenderer(size: scaledRect.size)
         let img = renderer.image { ctx in
             UIColor.white.set()
-            ctx.fill(pageRect)
+            ctx.fill(scaledRect)
 
-            ctx.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
-            ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
+            ctx.cgContext.translateBy(x: 0.0, y: scaledRect.size.height)
+            ctx.cgContext.scaleBy(x: scale, y: -scale)
             ctx.cgContext.drawPDFPage(page)
         }
         

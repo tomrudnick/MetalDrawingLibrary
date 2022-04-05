@@ -29,7 +29,7 @@ struct TVertexOut {
     float2 texturePosition;
 };
 
-vertex VertexOut basic_vertex( const VertexIn vertexIn [[stage_in]], constant vector_uint2 *viewportSizePointer [[buffer(1)]]) {
+vertex VertexOut basic_vertex(const VertexIn vertexIn [[stage_in]], constant vector_uint2 *viewportSizePointer [[buffer(1)]]) {
     
     float2 pixelSpacePosition = vertexIn.position.xy;
     vector_float2 viewportSize = vector_float2(*viewportSizePointer);
@@ -75,7 +75,7 @@ vertex TVertexOut tvertex(const TVertexIn vertexIn [[stage_in]], constant vector
 }
 
 fragment half4 tfragment(TVertexOut vertexIn [[ stage_in ]], texture2d<float> texture [[ texture(0)]]){
-    constexpr sampler defaultSmapler;
-    float4 color = texture.sample(defaultSmapler, vertexIn.texturePosition);
+    constexpr sampler textureSampler(filter::linear, address::repeat);
+    float4 color = texture.sample(textureSampler, vertexIn.texturePosition);
     return half4(color.r,color.g,color.b, 1);
 }

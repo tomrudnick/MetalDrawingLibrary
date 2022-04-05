@@ -64,6 +64,18 @@ class MetalView: UIView {
         viewportSize.y = UInt32(size.height)
     }
     
+    func convert (x: CGFloat, y: CGFloat)-> CGPoint{
+        let newx = (CGFloat(viewportSize.x) / 512 * 2.0) * ( x / (CGFloat(viewportSize.x) / 2 ) - 1)
+        let newy = -1 * (CGFloat(viewportSize.y) / 512 * 2.0) * (y / (CGFloat(viewportSize.y) / 2 ) - 1)
+        return CGPoint(x: newx, y: newy)
+    }
+    
+    func convertToSIMD3 (x: CGFloat, y: CGFloat)-> SIMD3<Float>{
+        let newx = (CGFloat(viewportSize.x) / 512 * 2.0) * ( x / (CGFloat(viewportSize.x) / 2 ) - 1)
+        let newy = -1 * (CGFloat(viewportSize.y) / 512 * 2.0) * (y / (CGFloat(viewportSize.y) / 2 ) - 1)
+        return SIMD3<Float>(Float(newx), Float(newy), 0.0)
+    }
+    
 }
 
 //This Class is a way to fix the Problem that the app crashes if the delegate of the MetalLayer is set to self in MetalView....

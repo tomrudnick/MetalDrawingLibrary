@@ -87,12 +87,15 @@ class Renderer: NSObject, RendererDelegate {
         let renderEncoder = commandBuffer
           .makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 0.0, width: Double(metalView.viewportSize.x) * metalView.scale, height: Double(metalView.viewportSize.y) * metalView.scale, znear: 0.0, zfar: 1.0))
+        renderEncoder.setDepthStencilState(depthState)
         //print("X: \(metalView.viewportSize.x) Y: \(metalView.viewportSize.y) ")
-        renderEncoder.setRenderPipelineState(canvas.pdf!.pipelineState!)
-        renderEncoder.setVertexBytes(&metalView.viewportSize, length: MemoryLayout<vector_uint2>.stride, index: 1)
-        renderEncoder.setVertexBuffer(canvas.pdf!.vertexBuffer!, offset: 0, index: 0)
-        renderEncoder.setFragmentTexture(canvas.pdf!.texture!, index: 0)
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: canvas.pdf!.vertices.count)
+        if let pdf = canvas.pdf {
+            renderEncoder.setRenderPipelineState(pdf.pipelineState!)
+            renderEncoder.setVertexBytes(&metalView.viewportSize, length: MemoryLayout<vector_uint2>.stride, index: 1)
+            renderEncoder.setVertexBuffer(pdf.vertexBuffer!, offset: 0, index: 0)
+            renderEncoder.setFragmentTexture(pdf.texture!, index: 0)
+            renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: pdf.vertices.count)
+        }
         
         var addedLine = false
         if let currentLine = canvas.activeLine {
