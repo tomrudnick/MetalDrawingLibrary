@@ -63,7 +63,6 @@ class MetalView: UIView {
         viewportSize.x = UInt32(size.width)
         viewportSize.y = UInt32(size.height)
     }
-    
 }
 
 //This Class is a way to fix the Problem that the app crashes if the delegate of the MetalLayer is set to self in MetalView....

@@ -25,6 +25,7 @@ class Line {
     private var bezierGenerator: BezierGenerator
     
     var vertexPoints: [Vertex] = []
+    var altForce: CGFloat = 0
     
     init(brush: Brush) {
         self.brush = brush
@@ -36,21 +37,30 @@ class Line {
    
 
     
-    func addPoint(_ point: CGPoint) {
+    func addPoint(_ point: CGPoint, _ force: CGFloat) {
         let points = bezierGenerator.pushPoint(point)
         if (points.isEmpty) { return }
         for i in 0..<(points.count - 1) {
             let length = points[i].distance(to: points[i + 1])
-            
-            let pointCount = max(length * 100, 1)
+            //print("force :\(forces[i])")
+            let pointCount = max(length * (100 + 400 * (1 - force)), 1)
             for j in 0..<Int(pointCount) {
                 let index = CGFloat(j)
                 //print(pointCount)
                 let x = points[i].x + (points[i+1].x - points[i].x) * (index / pointCount)
                 let y = points[i].y + (points[i+1].y - points[i].y) * (index / pointCount)
-                vertexPoints.append(Vertex(position: SIMD3<Float>(x: Float(x), y: Float(y), z: 0.0), force: 10.0, color: brush.color))
+                //let f = (1 - (index / pointCount)) * forces[i] + forces[i+1] * (index / pointCount)
+                let t = (CGFloat (i * Int(pointCount)) + index ) / (pointCount * CGFloat (points.count - 1))
+                var f = Float (altForce * (1 - t) + force * t)
+                f = f * brush.lineWidth
+                if (f < brush.minWidth){
+                    f = brush.minWidth
+                }
+                //print("force \(f)")
+                vertexPoints.append(Vertex(position: SIMD3<Float>(x: Float(x), y: Float(y), z: 0.0), force: f, color: brush.color))
             }
         }
+        altForce = force
         vertexBuffer = Renderer.device.makeBuffer(bytes: vertexPoints, length: MemoryLayout<Vertex>.stride * vertexPoints.count, options: [])
         
         
@@ -80,14 +90,15 @@ class Line {
         
     }
     
-    func addLastPoint(_ point: CGPoint) {
-        addPoint(point)
+    func addLastPoint(_ point: CGPoint, _ force: CGFloat) {
+        addPoint(point, force)
         bezierGenerator.finish()
+        altForce=0
         trianglesArr = []
     }
     
     
-    func computeTriangles(points: [CGPoint], force: Float) {
+   /* func computeTriangles(points: [CGPoint], force: Float) {
         trianglesArr.append(contentsOf: [Float(points[0].x),Float(points[0].y),0.0])
         var ex: Float = 0
         var ey: Float = 0
@@ -142,6 +153,6 @@ class Line {
                                          ])
             }
         }
-    }
+    }*/
     
 }

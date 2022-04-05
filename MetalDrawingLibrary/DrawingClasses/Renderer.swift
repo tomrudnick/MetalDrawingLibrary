@@ -95,6 +95,8 @@ class Renderer: NSObject, RendererDelegate {
         renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: canvas.pdf!.vertices.count)
         
         var addedLine = false
+        var zoom : vector_float2 = SIMD2<Float>(canvas.zoom, canvas.zoom)
+        var zoomPoint : vector_float2 = canvas.zoomPoint
         if let currentLine = canvas.activeLine {
             canvas.lines.append(currentLine)
             addedLine = true
@@ -104,6 +106,8 @@ class Renderer: NSObject, RendererDelegate {
                 renderEncoder.setRenderPipelineState(pipelineState)
                 //renderEncoder.setDepthStencilState(depthState)
                 renderEncoder.setVertexBytes(&metalView.viewportSize, length: MemoryLayout<vector_uint2>.stride, index: 1)
+                renderEncoder.setVertexBytes(&zoom, length: MemoryLayout<vector_float2>.stride, index: 2)
+                renderEncoder.setVertexBytes(&zoomPoint, length: MemoryLayout<vector_float2>.stride, index: 3)
                 renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
                 renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: line.vertexPoints.count)
                 //renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: line.indexCount, indexType: .uint16, indexBuffer: indexBuffer, indexBufferOffset: 0)
